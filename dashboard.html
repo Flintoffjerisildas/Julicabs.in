@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard | DriveX</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#64748b',
+                        dark: '#0f172a',
+                        light: '#f8fafc',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white shadow-sm" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex items-center gap-2">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg">
+                        <i data-lucide="car" class="w-6 h-6"></i>
+                    </div>
+                    <span class="font-heading font-bold text-2xl tracking-tight text-dark">DriveX</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="text-gray-600 hover:text-primary transition-colors font-medium">Home</a>
+                    <a href="vehicles.html"
+                        class="text-gray-600 hover:text-primary transition-colors font-medium">Vehicles</a>
+                    <a href="dashboard.html" class="text-primary font-medium">Bookings</a>
+
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-3 pl-4 border-l border-gray-200">
+                            <div
+                                class="w-10 h-10 rounded-full bg-dark text-white flex items-center justify-center font-bold">
+                                JD</div>
+                            <div class="hidden lg:block">
+                                <p class="text-sm font-bold text-dark">John Doe</p>
+                                <p class="text-xs text-gray-400">john@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden text-dark focus:outline-none">
+                    <i data-lucide="menu" class="w-8 h-8"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 p-4 shadow-xl">
+            <div class="flex flex-col gap-4">
+                <div class="flex items-center gap-3 pb-4 border-b border-gray-100">
+                    <div class="w-10 h-10 rounded-full bg-dark text-white flex items-center justify-center font-bold">JD
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-dark">John Doe</p>
+                        <p class="text-xs text-gray-400">john@example.com</p>
+                    </div>
+                </div>
+                <a href="index.html" class="text-gray-600 block px-3 py-2 font-medium">Home</a>
+                <a href="vehicles.html" class="text-gray-600 block px-3 py-2 font-medium">Vehicles</a>
+                <a href="dashboard.html" class="text-primary block px-3 py-2 font-medium">Bookings</a>
+                <a href="#" class="text-red-500 block px-3 py-2 font-medium">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="pt-28 pb-20 container mx-auto px-4 max-w-6xl">
+        <h1 class="text-3xl font-heading font-bold text-dark mb-8">My Dashboard</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <!-- Stats Cards -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm mb-1">Total Bookings</p>
+                    <p id="stat-total" class="text-3xl font-bold text-dark">0</p>
+                </div>
+                <div class="w-12 h-12 bg-blue-50 text-primary rounded-xl flex items-center justify-center">
+                    <i data-lucide="calendar" class="w-6 h-6"></i>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm mb-1">Active Rentals</p>
+                    <p id="stat-active" class="text-3xl font-bold text-dark">0</p>
+                </div>
+                <div class="w-12 h-12 bg-green-50 text-green-500 rounded-xl flex items-center justify-center">
+                    <i data-lucide="key" class="w-6 h-6"></i>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm mb-1">Total Spent</p>
+                    <p id="stat-spent" class="text-3xl font-bold text-dark">$0</p>
+                </div>
+                <div class="w-12 h-12 bg-purple-50 text-purple-500 rounded-xl flex items-center justify-center">
+                    <i data-lucide="credit-card" class="w-6 h-6"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bookings List -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+                <h2 class="font-bold text-lg">Booking History</h2>
+                <button id="clear-history" class="text-sm text-red-500 hover:text-red-700">Clear History</button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-50/50 text-gray-500 text-sm uppercase tracking-wider">
+                            <th class="px-6 py-4 font-medium">Vehicle</th>
+                            <th class="px-6 py-4 font-medium">Dates</th>
+                            <th class="px-6 py-4 font-medium">Total Price</th>
+                            <th class="px-6 py-4 font-medium">Status</th>
+                            <th class="px-6 py-4 font-medium text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookings-table-body" class="divide-y divide-gray-100 text-sm">
+                        <!-- JS Insertions Here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-dashboard" class="hidden p-12 text-center">
+                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="calendar-off" class="w-8 h-8 text-gray-400"></i>
+                </div>
+                <h3 class="text-lg font-bold text-dark mb-2">No Bookings Yet</h3>
+                <p class="text-gray-500 mb-6">You haven't made any bookings yet.</p>
+                <a href="vehicles.html"
+                    class="bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-dark">Book a
+                    Vehicle</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+</body>
+
+</html>

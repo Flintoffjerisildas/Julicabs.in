@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | DriveX</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#64748b',
+                        dark: '#0f172a',
+                        light: '#f8fafc',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased h-screen flex flex-col">
+
+    <nav class="fixed w-full z-50 bg-transparent" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex items-center gap-2">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg">
+                        <i data-lucide="car" class="w-6 h-6"></i>
+                    </div>
+                    <span class="font-heading font-bold text-2xl tracking-tight text-dark">DriveX</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-grow flex items-center justify-center px-4">
+        <div class="bg-white rounded-3xl shadow-xl w-full max-w-md overflow-hidden flex flex-col md:flex-row">
+            <div class="w-full p-8 md:p-10">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-heading font-bold text-dark mb-2">Welcome Back</h1>
+                    <p class="text-gray-500">Sign in to manage your bookings</p>
+                </div>
+
+                <form class="space-y-6" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                        <div class="relative">
+                            <i data-lucide="mail" class="absolute left-3 top-3 w-5 h-5 text-gray-400"></i>
+                            <input type="email" required placeholder="john@example.com"
+                                class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white transition-all">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="block text-sm font-medium text-gray-700">Password</label>
+                            <a href="#" class="text-xs text-primary font-medium hover:underline">Forgot password?</a>
+                        </div>
+                        <div class="relative">
+                            <i data-lucide="lock" class="absolute left-3 top-3 w-5 h-5 text-gray-400"></i>
+                            <input type="password" required placeholder="••••••••"
+                                class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white transition-all">
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all transform active:scale-95">
+                        Sign In
+                    </button>
+                </form>
+
+                <div class="mt-8 text-center text-sm text-gray-500">
+                    Don't have an account? <a href="register.html" class="text-primary font-bold hover:underline">Sign
+                        up</a>
+                </div>
+
+                <div class="mt-8 pt-8 border-t border-gray-100 text-center">
+                    <a href="admin.html" class="text-xs text-gray-400 hover:text-dark">Admin Login Access</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
