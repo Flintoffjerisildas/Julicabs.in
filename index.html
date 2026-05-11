@@ -326,12 +326,65 @@
                 lucide.createIcons();
             }
 
+            // Owner Popup Logic
+            const popup = document.getElementById('owner-popup');
+            const closeBtn = document.getElementById('close-popup-btn');
+            const popupContent = popup.querySelector('.popup-content');
+
+            if (popup && closeBtn) {
+                // Show popup after a short delay
+                setTimeout(() => {
+                    popup.classList.remove('opacity-0', 'pointer-events-none');
+                    popupContent.classList.remove('scale-90');
+                    popupContent.classList.add('scale-100');
+                }, 800);
+
+                // Close function
+                const closePopup = () => {
+                    popup.classList.add('opacity-0', 'pointer-events-none');
+                    popupContent.classList.remove('scale-100');
+                    popupContent.classList.add('scale-90');
+                };
+
+                // Close on button click
+                closeBtn.addEventListener('click', closePopup);
+
+                // Close after 5 seconds
+                setTimeout(() => {
+                    closePopup();
+                }, 5800); // 800ms delay + 5000ms display
+            }
+
 
 
 
 
         });
     </script>
+
+    <!-- Owner Profile Popup Modal -->
+    <div id="owner-popup" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-500">
+        <div class="relative bg-white p-8 rounded-3xl shadow-2xl border border-gray-100 flex flex-col items-center justify-center text-center max-w-lg w-full mx-4 transform scale-90 transition-transform duration-500 popup-content">
+            <!-- Close Button -->
+            <button id="close-popup-btn" class="absolute top-4 right-4 w-10 h-10 bg-gray-100 text-gray-500 hover:text-dark hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Profile Info -->
+            <div class="relative mb-6 mt-4">
+                <img src="assets/images/owner-pic/owner-of-the-company-profile.jpeg" alt="Mr. Venister" class="w-48 h-48 rounded-full border-4 border-primary object-cover shadow-xl">
+                <div class="absolute -bottom-2 -right-2 bg-dark text-white p-2 rounded-full border-4 border-white shadow-lg">
+                    <i data-lucide="award" class="w-5 h-5 text-primary"></i>
+                </div>
+            </div>
+            <h2 class="text-3xl font-heading font-bold text-dark mb-2">Mr. Venister</h2>
+            <p class="text-primary font-bold text-sm tracking-widest uppercase mb-4">Founder & CEO</p>
+            <div class="w-12 h-1 bg-primary mb-4 rounded-full"></div>
+            <p class="text-gray-600 text-base font-heading italic leading-relaxed px-4">
+                "Your destination is our dedication. We are committed to delivering unparalleled safety, premium comfort, and absolute reliability in every single journey you take with Juli Cabs."
+            </p>
+        </div>
+    </div>
 </body>
 
 </html>
