@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     els.name.textContent = vehicle.name;
     els.category.textContent = vehicle.category;
     els.rating.textContent = vehicle.rating;
-    els.rate.textContent = `$${vehicle.priceDaily}`;
+    els.rate.textContent = `₹ ${vehicle.priceDaily}`;
 
     // Calculation Logic
     function calculateTotal() {
@@ -54,12 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const total = subtotal + taxes;
 
             els.days.textContent = diffDays;
-            els.tax.textContent = `$${taxes.toFixed(2)}`;
-            els.total.textContent = `$${total.toFixed(2)}`;
+            els.tax.textContent = `₹ ${taxes.toFixed(2)}`;
+            els.total.textContent = `₹ ${total.toFixed(2)}`;
         } else {
             els.days.textContent = '0';
-            els.tax.textContent = '$0.00';
-            els.total.textContent = '$0.00';
+            els.tax.textContent = '₹ 0.00';
+            els.total.textContent = '₹ 0.00';
         }
     }
 

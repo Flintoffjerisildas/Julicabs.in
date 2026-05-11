@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('nav');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 10) {
-            navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
-            navbar.classList.remove('bg-transparent');
+            navbar.classList.add('bg-black/60', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-white/10');
+            navbar.classList.remove('bg-transparent', 'border-transparent');
         } else {
-            navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
-            navbar.classList.add('bg-transparent');
+            navbar.classList.remove('bg-black/60', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-white/10');
+            navbar.classList.add('bg-transparent', 'border-transparent');
         }
     });
 });

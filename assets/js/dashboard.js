@@ -21,14 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const active = bookings.filter(b => b.status === 'Confirmed').length;
         statActive.textContent = active;
 
-        // Calculate Total Spent (Removing $ and parsing float)
+        // Calculate Total Spent (Removing Rs. and parsing float)
         const spent = bookings.reduce((acc, curr) => {
             if (curr.status !== 'Cancelled') {
-                return acc + parseFloat(curr.total.replace('$', '').replace(',', ''));
+                return acc + parseFloat(curr.total.replace('₹ ', '').replace('₹', '').replace(',', ''));
             }
             return acc;
         }, 0);
-        statSpent.textContent = `$${spent.toFixed(0)}`;
+        statSpent.textContent = `₹ ${spent.toFixed(0)}`;
 
         // Render Table
         tableBody.innerHTML = '';

@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check URL Params for initial filter
     const urlParams = new URLSearchParams(window.location.search);
     const typeParam = urlParams.get('type');
+    const seatsParam = urlParams.get('seats');
 
     if (typeParam) {
         // capitalize
@@ -35,6 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
         typeCheckboxes.forEach(cb => {
             if (cb.value.toLowerCase() === typeParam.toLowerCase()) {
                 cb.checked = true;
+            }
+        });
+    }
+
+    if (seatsParam) {
+        const seatVal = parseInt(seatsParam);
+        currentFilters.seats = seatVal;
+
+        // Update UI buttons
+        seatBtns.forEach(btn => {
+            if (parseInt(btn.dataset.seats) === seatVal) {
+                btn.classList.remove('border-gray-200', 'text-gray-600');
+                btn.classList.add('border-primary', 'text-primary', 'bg-primary/5');
             }
         });
     }
@@ -71,8 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
             filtered.sort((a, b) => a.priceDaily - b.priceDaily);
         } else if (currentFilters.sort === 'price-high') {
             filtered.sort((a, b) => b.priceDaily - a.priceDaily);
-        } else if (currentFilters.sort === 'rating') {
-            filtered.sort((a, b) => b.rating - a.rating);
         }
 
         // Empty State
@@ -108,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                       
                       <div class="mt-auto flex items-end justify-between pt-4 border-t border-gray-100">
                           <div>
-                              <span class="text-xl font-bold text-primary">$${v.priceDaily}</span>
+                              <span class="text-xl font-bold text-primary">₹ ${v.priceDaily}</span>
                               <span class="text-xs text-gray-400">/day</span>
                           </div>
                           <a href="details.html?id=${v.id}" class="bg-dark text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl">
@@ -147,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Price
     priceRange.addEventListener('input', (e) => {
         currentFilters.maxPrice = parseInt(e.target.value);
-        priceValue.textContent = `$${currentFilters.maxPrice}`;
+        priceValue.textContent = `Rs. ${currentFilters.maxPrice}`;
         renderVehicles();
     });
 
@@ -194,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         typeCheckboxes.forEach(cb => cb.checked = false);
         searchInput.value = '';
         priceRange.value = 1000;
-        priceValue.textContent = '$1000';
+        priceValue.textContent = 'Rs. 1000';
         seatBtns.forEach(b => {
             b.classList.remove('border-primary', 'text-primary', 'bg-primary/5');
             b.classList.add('border-gray-200', 'text-gray-600');

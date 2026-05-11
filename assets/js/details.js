@@ -13,11 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Elements to populate
     const els = {
         image: document.getElementById('main-image'),
+        thumbnailsContainer: document.getElementById('image-thumbnails'),
         name: document.getElementById('vehicle-name'),
         category: document.getElementById('vehicle-category'),
         location: document.getElementById('vehicle-location'),
-        rating: document.getElementById('vehicle-rating'),
-        reviews: document.getElementById('vehicle-reviews'),
         seats: document.getElementById('spec-seats'),
         fuel: document.getElementById('spec-fuel'),
         trans: document.getElementById('spec-trans'),
@@ -36,26 +35,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Populate data
     els.image.src = vehicle.image;
+    
+    // Populate thumbnails
+    if (els.thumbnailsContainer && vehicle.images && vehicle.images.length > 0) {
+        els.thumbnailsContainer.innerHTML = '';
+        vehicle.images.forEach((imgSrc, index) => {
+            const thumb = document.createElement('img');
+            thumb.src = imgSrc;
+            thumb.className = `w-24 h-24 object-cover rounded-lg cursor-pointer border-2 transition-all flex-shrink-0 ${index === 0 ? 'border-primary' : 'border-transparent hover:border-primary/50'}`;
+            thumb.addEventListener('click', () => {
+                els.image.src = imgSrc;
+                // Update active state
+                Array.from(els.thumbnailsContainer.children).forEach(child => {
+                    child.classList.remove('border-primary');
+                    child.classList.add('border-transparent', 'hover:border-primary/50');
+                });
+                thumb.classList.remove('border-transparent', 'hover:border-primary/50');
+                thumb.classList.add('border-primary');
+            });
+            els.thumbnailsContainer.appendChild(thumb);
+        });
+    }
+
     els.name.textContent = vehicle.name;
     els.category.textContent = vehicle.category;
     els.location.textContent = vehicle.location;
-    els.rating.textContent = vehicle.rating;
-    els.reviews.textContent = vehicle.reviews;
     els.seats.textContent = vehicle.seats;
     els.fuel.textContent = vehicle.fuel;
     els.trans.textContent = vehicle.transmission;
-    els.priceDaily.textContent = `$${vehicle.priceDaily}`;
-    els.priceHourly.textContent = `$${vehicle.priceHourly}`;
+    els.priceDaily.textContent = `₹ ${vehicle.priceDaily}`;
+    els.priceHourly.textContent = `₹ ${vehicle.priceHourly}`;
 
     // Handle Form Submission
-    const form = document.getElementById('booking-preview-form');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // In a real app we would validate dates here
-            // For now, redirect to booking page with ID
-            window.location.href = `booking.html?id=${id}`;
-        });
+    // Handle Contact Button
+    const contactBtn = document.getElementById('contact-btn');
+    if (contactBtn) {
+        contactBtn.href = `contact.html?vehicle=${encodeURIComponent(vehicle.name)}`;
     }
 
     lucide.createIcons();
