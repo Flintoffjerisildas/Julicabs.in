@@ -31,4 +31,23 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.classList.add('bg-transparent', 'border-transparent');
         }
     });
+    // Scroll Animations
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                // Optional: Stop observing once animated
+                // observer.unobserve(entry.target); 
+            }
+        });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.scroll-animate');
+    animatedElements.forEach(el => observer.observe(el));
 });

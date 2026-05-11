@@ -113,3 +113,42 @@ input:focus, select:focus, textarea:focus {
   border-color: var(--primary);
   ring: 2px solid var(--primary);
 }
+
+/* Scroll Animations */
+.scroll-animate {
+  opacity: 0;
+  visibility: hidden;
+  will-change: opacity, transform;
+}
+
+.scroll-animate.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.slide-left.is-visible {
+  animation: slideInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.slide-right.is-visible {
+  animation: slideInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.slide-up.is-visible {
+  animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  0% { opacity: 0; transform: translateX(50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInUp {
+  0% { opacity: 0; transform: translateY(50px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
