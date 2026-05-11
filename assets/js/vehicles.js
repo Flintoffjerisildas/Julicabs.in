@@ -94,9 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
             emptyState.classList.add('hidden');
 
             filtered.forEach(v => {
-                const card = document.createElement('div');
-                card.className = "bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group";
-
+                const card = document.createElement('a');
+                card.href = `details.html?id=${v.id}`;
+                card.className = "bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group block cursor-pointer";
                 card.innerHTML = `
                   <div class="relative h-56 overflow-hidden">
                        <img src="${v.image}" alt="${v.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
@@ -123,9 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
                               <span class="text-xl font-bold text-primary">₹ ${v.priceDaily}</span>
                               <span class="text-xs text-gray-400">/day</span>
                           </div>
-                          <a href="details.html?id=${v.id}" class="bg-dark text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl">
+                          <div class="bg-dark text-white px-4 py-2 rounded-xl text-sm font-semibold group-hover:bg-gray-800 transition-colors shadow-lg group-hover:shadow-xl">
                               View Details
-                          </a>
+                          </div>
                       </div>
                   </div>
               `;
